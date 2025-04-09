@@ -26,7 +26,7 @@ Follow the prompts to set username, email, and password.
 ```
 python manage.py runserver
 ```
-Open your browser and go to:
+Open your browser and go to below link for quora dashboard:
 ```
 http://127.0.0.1:8000/
 ```
