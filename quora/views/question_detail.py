@@ -9,7 +9,7 @@ def question_detail_view(request, pk):
     question = Question.objects.get(pk=pk)
     answers = (
         Answer.objects.filter(question=question)
-        .annonate(likes=Count("like"))
+        .annotate(likes=Count("like"))
         .order_by("-likes")
     )
 
@@ -18,7 +18,7 @@ def question_detail_view(request, pk):
         if form.is_valid():
             answer = form.save(commit=False)
             answer.question = question
-            answer.user = request.user
+            answer.posted_by = request.user
             answer.save()
             return redirect("question_detail", pk=pk)
     else:

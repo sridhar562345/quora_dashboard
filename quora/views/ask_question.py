@@ -10,7 +10,7 @@ def ask_question_view(request):
         form = QuestionForm(request.POST)
         if form.is_valid():
             question = form.save(commit=False)
-            question.user = request.user
+            question.posted_by = request.user
             question.save()
             return redirect("question_list")
     else:
