@@ -5,3 +5,10 @@ from django.db import models
 class Like(models.Model):
     answer = models.ForeignKey("Answer", on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["answer", "user"], name="unique_like"
+            )
+        ]
