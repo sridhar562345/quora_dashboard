@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Login</h2>
+<style>
+    .errorlist {
+        color: red;
+        list-style: none;
+        padding: 0;
+        margin: 5px 0;
+    }
+</style>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}

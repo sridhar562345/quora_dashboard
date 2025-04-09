@@ -13,6 +13,15 @@ def question_detail_view(request, pk):
         .order_by("-likes")
     )
 
+    if request.user.is_authenticated:
+        for answer in answers:
+            answer.liked_by_user = answer.like_set.filter(
+                user=request.user
+            ).exists()
+    else:
+        for answer in answers:
+            answer.liked_by_user = False
+
     if request.method == "POST":
         form = AnswerForm(request.POST)
         if form.is_valid():
